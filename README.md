@@ -1,115 +1,129 @@
-# LangGraph ReAct Function Calling
+# LangGraph ReAct with Function Calling
 
-An AI-powered project using **LangGraph**, **LangChain**, and OpenAI to implement the ReAct (Reasoning + Acting) paradigm with function calling. This setup demonstrates how to integrate reasoning steps with external function executions.
+LangGraph ReAct with Function Calling demonstrates how to build reasoning agents using **LangGraph**, **LangChain**, and **function calling** with custom tools.
 
----
-
-## Features
-
-- ReAct (Reason + Act) pattern with LangGraph
-- Function calling support using LangChain and OpenAI
-- Environment variable management via `.env`
-- Organized project structure with Poetry for dependency management
-- Ready-to-extend nodes (`nodes.py`) and entry script (`main.py`)
+This project showcases:
+- ReAct (Reasoning + Acting) pattern with LangGraph
+- Integration of **OpenAI** models (via `ChatOpenAI`)
+- Web search capability using **TavilySearch**
+- Custom Python tool (`triple`) for function calling
+- Conditional graph flows for agent reasoning
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```
-LangGraph_ReAct/
-│── .env                # Environment variables (not committed)
-│── .env.example        # Example environment variables file
-│── .gitignore
-│── main.py             # Entry point
-│── nodes.py            # Node definitions for LangGraph
-│── poetry.lock
-│── poetry.toml
-│── pyproject.toml      # Project configuration with dependencies
-│── README.md           # Documentation
+LangGraph_ReAct_Function_Calling/
+├── .env                # Environment variables
+├── .env.example        # Example env file
+├── .gitignore
+├── main.py             # Entry point, builds and runs the LangGraph workflow
+├── nodes.py            # Defines reasoning and tool execution nodes
+├── react.py            # Defines tools and LLM binding
+├── poetry.lock
+├── poetry.toml
+├── pyproject.toml      # Poetry dependencies
+└── README.md           # Project documentation
 ```
 
 ---
 
-## Installation
+## ⚙️ Installation
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/mouyse/LangGraph-ReAct-Function-Calling.git
-   cd LangGraph-ReAct-Function-Calling
-   ```
+```bash
+git clone https://github.com/mouyse/LangGraph-ReAct-Function-Calling.git
+cd LangGraph-ReAct-Function-Calling
+```
 
-2. Install dependencies with Poetry:
-
-   ```bash
-   poetry install
-   ```
-
-3. (Optional) Activate the virtual environment:
-
-   ```bash
-   poetry shell
-   ```
-
----
-
-## Configuration
-
-1. Copy `.env.example` to `.env`:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-2. Add your API keys inside `.env`:
-
-   ```env
-   OPENAI_API_KEY=your_openai_api_key_here
-   TAVILY_API_KEY=your_tavily_api_key_here
-   ```
-
----
-
-## Usage
-
-Run the entry script:
+2. Install dependencies with **Poetry**:
 
 ```bash
-poetry run python main.py
+poetry install
 ```
 
-Example output:
-
-```
-Hello from LangGraph ReAct
-<your OpenAI API key>
-```
-
----
-
-## Development
-
-- Code formatting: [Black](https://github.com/psf/black)
-- Import sorting: [isort](https://pycqa.github.io/isort/)
-
-Run formatters:
+3. Activate virtual environment:
 
 ```bash
-poetry run black .
-poetry run isort .
+poetry shell
+```
+
+4. Setup environment variables:
+
+```bash
+cp .env.example .env
+```
+
+Update `.env` with your keys:
+
+```
+OPENAI_API_KEY=your_openai_api_key_here
+TAVILY_API_KEY=your_tavily_api_key_here
 ```
 
 ---
 
-## Contributing
+## 🚀 Usage
 
-Contributions are welcome! Please fork the repository, create a new branch, and open a pull request.
+Run the project:
+
+```bash
+python main.py
+```
+
+Expected output (example):
+
+```
+Hello from LangGraph ReAct with Function calling
+<Agent's reasoning and response with tool usage>
+```
+
+It will also generate a `flow.png` visualization of the LangGraph workflow.
 
 ---
 
-## License
+## 🛠️ Tools Used
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- **LangGraph** → For building graph-based reasoning workflows
+- **LangChain** → Core framework for LLM orchestration
+- **OpenAI (ChatOpenAI)** → LLM for reasoning and function calling
+- **TavilySearch** → Web search integration
+- **Custom tool (triple)** → Example numeric operation tool
 
 ---
+
+## 📖 Example Query
+
+The agent can answer:
+
+```
+"How many prime ministers has India had and list them down?
+Which Prime Minister of India is Narendra Modi in the order of succession?
+List it and then triple the number."
+```
+
+The reasoning agent will:
+1. Search and retrieve information via TavilySearch
+2. Use ReAct reasoning to determine the answer
+3. Call the **triple tool** on the result
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Feel free to open a PR or an issue.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🔗 Repository
+
+[LangGraph-ReAct-Function-Calling](https://github.com/mouyse/LangGraph-ReAct-Function-Calling)
